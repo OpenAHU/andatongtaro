@@ -17,8 +17,14 @@
 
 ### [Taroify UI库](https://taroify.gitee.io/taroify.com/quickstart/)
 
+### Hooks
+
 ### [ahoooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
-ready控制登录页面和请求
+一些通用的请求hooks。
+
+### [taro hooks](https://taro-hooks-innocces.vercel.app/hooks/basic/use-app)
+
+用一些为Taro定制的Hooks。
 
 ### Redux
 
