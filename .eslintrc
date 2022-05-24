@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "taro/react",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "linebreak-style": ["error", "unix"]
+  }
+}
