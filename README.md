@@ -20,7 +20,22 @@
 ### [ahoooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
 ready控制登录页面和请求
 
-### [redux toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
+### Redux
+
+#### [redux toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
+
+#### [redux 持久化](https://github.com/mefengl/redux-persist-taro-storage/tree/patch-1)
+
+即将本地缓存作为redux数据库。
+
+哪些情况下使用redux做状态管理？
+1. 跨页面数据
+2. 持久化数据
+
+否则用hooks即可，优点是ahooks和taro-hooks提供了很多好用的轮子。
+
+不建议混合使用redux和hooks。
 
 ## 界面
 ### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)。
+
