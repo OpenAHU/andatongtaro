@@ -59,7 +59,7 @@ export default function Index() {
             {/* 左栏 */}
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i, index) => <View
               key={index}
-              className="col-span-1"
+              className='col-span-1'
               style={`grid-row:${i + 1}`}
             >
               <View className='left'>
@@ -73,9 +73,10 @@ export default function Index() {
             {scheduleData.map((item, index) => item.showArray[week] === 1 && <View
               key={index}
               className={`course--${item.colorArray[week]} course--color--${theme}-${item.colorIndex}`}
-              style={`grid-column:${item.weekday};grid-row-start: ${item.startTime};grid-row-end:${item.endTime}`}>
-              <View className="course--name">{item.name}</View>
-              <View className="course--location">{item.location}</View>
+              style={`grid-column:${item.weekday};grid-row-start: ${item.startTime};grid-row-end:${item.endTime}`}
+            >
+              <View className='course--name'>{item.name}</View>
+              <View className='course--location'>{item.location}</View>
             </View>)}
           </View>
         }
