@@ -4,6 +4,21 @@
 
 因项目开源，将后端API等敏感数据放入[项目文档库](https://ahuer.yuque.com/docs/share/b7f86141-33ee-4a06-8398-50467eee6f6a)中，需配置。
 
+### @taro/cli
+
+命令行工具升级，默认会更新到最新版本的cli工具，所以本地命令行工具需要及时升级。
+
+```bash
+npm -g uninstall @tarojs/cli
+npm -g i @tarojs/cli
+```
+
+在本地cli升级后，如果项目版本落后，在项目目录下执行以下命令同步，该命令会自动更新 `project.json` 文件：
+
+```bash
+taro update project
+```
+
 ## TODO
 
 ### 反馈
