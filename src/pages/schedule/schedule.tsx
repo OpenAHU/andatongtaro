@@ -3,15 +3,17 @@ import { View } from '@tarojs/components';
 import { request } from '@tarojs/taro';
 import { useRequest } from 'ahooks';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import apis from '../../apis.json';
+import { setSchedule } from '../../store/scheduleSlice';
 import classInfoRefine from './classInfoRefine';
 import './schedule.scss';
 
 export default function Index() {
   const [theme, setTheme] = useState(1);
   const cookies = useSelector((state: RootState) => state.cookies)
+  const scheduleData = useSelector((state: RootState) => state.schedule.data)
   const schedule = () => request({
     method: 'GET',
     url: apis.schedule,
@@ -25,10 +27,14 @@ export default function Index() {
   })
     .then(res => res?.data?.data)
     .then(res => classInfoRefine(res))
-  const { data, loading } = useRequest(schedule,
+  const dispatch = useDispatch()
+  const { loading } = useRequest(schedule,
     {
-      ready: cookies.cookies !== '',
+      ready: cookies.cookies !== '' && scheduleData.length === 0,
       retryCount: 2,
+      onSuccess: (res) => {
+        dispatch(setSchedule(res))
+      }
     });
   return (
     <Swiper>
@@ -36,7 +42,7 @@ export default function Index() {
         key={weekindex}
       >
         {loading && 'loading'}
-        {!loading && data &&
+        {!loading && scheduleData &&
           <View className='container'>
             {/* 每一天 */}
             {[, '一', '二', '三', '四', '五', '六', '日'].map((day, index) => <View
@@ -64,7 +70,7 @@ export default function Index() {
               </View>
             </View>)}
             {/* 课程 */}
-            {data.map((item, index) => item.showArray[week] === 1 && <View
+            {scheduleData.map((item, index) => item.showArray[week] === 1 && <View
               key={index}
               className={`course--${item.colorArray[week]} course--color--${theme}-${item.colorIndex}`}
               style={`grid-column:${item.weekday};grid-row-start: ${item.startTime};grid-row-end:${item.endTime}`}>
