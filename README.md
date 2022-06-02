@@ -40,8 +40,7 @@
 
 否则用hooks即可，优点是ahooks和taro-hooks提供了很多好用的轮子。
 
-不建议混合使用redux和hooks。
+不建议嵌套使用redux和hooks。
 
 ## 界面
 ### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)。
-
