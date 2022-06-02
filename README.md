@@ -13,7 +13,7 @@ npm -g uninstall @tarojs/cli
 npm -g i @tarojs/cli
 ```
 
-在本地cli升级后，如果项目版本落后，在项目目录下执行以下命令同步，该命令会自动更新 `project.json` 文件：
+在本地cli升级后，如果项目版本落后，在项目目录下执行以下命令同步，该命令会自动更新 `project.json` 文件(更新后会自动执行yarn install操作，打断，删除package-lock.json和node_modules重新npm install)：
 
 ```bash
 taro update project
