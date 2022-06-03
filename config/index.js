@@ -1,5 +1,6 @@
 const config = {
   plugins: [
+    'taro-plugin-compiler-optimization',
     'tarojs-router-next-plugin',
     '@dcasia/mini-program-tailwind-webpack-plugin/dist/taro',
   ],
