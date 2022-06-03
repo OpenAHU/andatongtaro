@@ -2,7 +2,7 @@
 
 ## 配置
 
-因项目开源，将后端API等数据放入[项目文档库](https://ahuer.yuque.com/docs/share/b7f86141-33ee-4a06-8398-50467eee6f6a)中，需配置。
+因项目开源，将后端API等数据放入[项目文档库](https://ahuer.yuque.com/docs/share/b7f86141-33ee-4a06-8398-50467eee6f6a)中，需配置（暂未提供测试API，所以，相关开发请联系安大通技术部）。
 
 ### @taro/cli
 
