@@ -2,7 +2,7 @@
 
 ## 配置
 
-因项目开源，将后端API等敏感数据放入[项目文档库](https://ahuer.yuque.com/docs/share/b7f86141-33ee-4a06-8398-50467eee6f6a)中，需配置。
+因项目开源，将后端API等数据放入[项目文档库](https://ahuer.yuque.com/docs/share/b7f86141-33ee-4a06-8398-50467eee6f6a)中，需配置。
 
 ### @taro/cli
 
