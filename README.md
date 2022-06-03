@@ -59,3 +59,11 @@ taro update project
 
 ## 界面
 ### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)。
+
+## 其他
+
+### dayjs
+
+[dayjs官网](https://dayjs.gitee.io/zh-CN/)
+
+提供很多日期相关的方法，比JS原生库简单许多。

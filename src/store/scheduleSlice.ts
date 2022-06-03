@@ -22,10 +22,16 @@ interface ScheduleItem {
 
 export interface ScheduleSlice {
   data: Array<ScheduleItem>,
+  startDate: string,
+  semester: Array<Array<{ month: string, day: string }>>,
+  currentweeknumber: number,
 }
 
 const initialState: ScheduleSlice = {
   data: [],
+  startDate: '2022-2-21',
+  semester: [],
+  currentweeknumber: 0,
 }
 
 export const scheduleSlice = createSlice({
@@ -34,11 +40,17 @@ export const scheduleSlice = createSlice({
   reducers: {
     setSchedule: (state, action: PayloadAction<Array<ScheduleItem>>) => {
       state.data = action.payload
+    },
+    setSemester: (state, action: PayloadAction<Array<Array<{ month: string, day: string }>>>) => {
+      state.semester = action.payload
+    },
+    setCurrentweeknumber: (state, action: PayloadAction<number>) => {
+      state.currentweeknumber = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSchedule } = scheduleSlice.actions
+export const { setSchedule, setSemester, setCurrentweeknumber } = scheduleSlice.actions
 
 export default scheduleSlice.reducer
