@@ -1,12 +1,13 @@
 import { Toast } from '@taroify/core';
-import { Swiper, SwiperItem, View } from '@tarojs/components';
-import { request, useDidShow } from '@tarojs/taro';
+import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
+import Taro, { request, useDidHide, useDidShow } from '@tarojs/taro';
 import { useBoolean, useRequest } from 'ahooks';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import apis from '../../apis.json';
-import { setCurrentweeknumber, setSchedule, setSemester } from '../../store/scheduleSlice';
+import rabbit from '../../assets/rabbitGrey.png';
+import { changeTheme, setCurrentweeknumber, setSchedule, setSemester } from '../../store/scheduleSlice';
 import classInfoRefine from './classInfoRefine';
 import './schedule.scss';
 import weekdayattop from './weekdayattop';
@@ -14,7 +15,7 @@ import weeknumber from './weeknumber';
 
 export default function Index() {
   const dispatch = useDispatch();
-  const [theme, setTheme] = useState(1);
+  const theme = useSelector((state: RootState) => state.schedule.theme);
   const cookies = useSelector((state: RootState) => state.cookies)
   const scheduleData = useSelector((state: RootState) => state.schedule.data)
 
@@ -24,12 +25,21 @@ export default function Index() {
     dispatch(setSemester(weekdayattop(startDate)))
   }
 
-  const [weekshow, { setTrue, setFalse }] = useBoolean(true)
+  const [weekshow, { setTrue: setWeekshowtrue, setFalse: setWeekshowfalse }] = useBoolean(true)
   const currentweeknumber = useSelector((state: RootState) => state.schedule.currentweeknumber)
+
+  // 专用于提示中的当前周数
+  const [weeknumbertouse, setWeeknumbertouse] = useState(currentweeknumber)
+
+  // 以下两个函数实现滑动切换到当前周的效果
   useDidShow(() => {
     dispatch(setCurrentweeknumber(weeknumber(startDate)))
-    setTrue()
+    setWeekshowtrue()
   })
+  useDidHide(() => {
+    dispatch(setCurrentweeknumber(weeknumbertouse))
+  })
+
 
   const schedule = () => request({
     method: 'GET',
@@ -56,21 +66,36 @@ export default function Index() {
 
   return (
     <>
+      <Image
+        className='rabbit'
+        src={rabbit}
+        onClick={() => {
+          Taro.showActionSheet({
+            itemList: ['更换主题', '导入课表(待做)'],
+            success: (res) => {
+              switch (res.tapIndex) {
+                case 0:
+                  dispatch(changeTheme())
+              }
+            },
+          }).catch(() => { })
+        }}
+      />
       <Toast
         open={weekshow}
         duration={1000}
         className='!px-0'
-        onClose={() => setFalse()}
+        onClose={() => setWeekshowfalse()}
       >
-        第 {currentweeknumber + 1} 周
+        第 {weeknumbertouse + 1} 周
       </Toast>
       <Swiper
         current={currentweeknumber}
         circular
         indicatorDots
         onChange={(e) => {
-          dispatch(setCurrentweeknumber(e.detail.current))
-          setTrue()
+          setWeeknumbertouse(e.detail.current)
+          setWeekshowtrue()
         }}
         className='h-screen'
       >

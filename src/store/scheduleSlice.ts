@@ -25,6 +25,7 @@ export interface ScheduleSlice {
   startDate: string,
   semester: Array<Array<{ month: string, day: string }>>,
   currentweeknumber: number,
+  theme: number,
 }
 
 const initialState: ScheduleSlice = {
@@ -32,6 +33,7 @@ const initialState: ScheduleSlice = {
   startDate: '2022-2-21',
   semester: [],
   currentweeknumber: 0,
+  theme: 0,
 }
 
 export const scheduleSlice = createSlice({
@@ -46,11 +48,14 @@ export const scheduleSlice = createSlice({
     },
     setCurrentweeknumber: (state, action: PayloadAction<number>) => {
       state.currentweeknumber = action.payload
+    },
+    changeTheme: (state) => {
+      state.theme = (state.theme) % 7 + 1
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSchedule, setSemester, setCurrentweeknumber } = scheduleSlice.actions
+export const { setSchedule, setSemester, setCurrentweeknumber, changeTheme } = scheduleSlice.actions
 
 export default scheduleSlice.reducer
