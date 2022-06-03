@@ -10,7 +10,7 @@ export default function Index() {
 
   return (
     <View>
-      <View className={styles.title}>hhhh</View>
+      <View className={styles.title}>hello</View>
       <Popup
         rounded
         open={needlogin}
