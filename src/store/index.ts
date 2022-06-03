@@ -3,7 +3,6 @@ import { persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import accountReducer from './accountSlice';
 import cookieReducer from './cookiesSlice';
-import notifySlice from './notifySlice';
 import storage from './redux-persist-taro-storage/src';
 import scheduleReducer from './scheduleSlice';
 
@@ -12,7 +11,6 @@ const reducers = combineReducers({
   cookies: cookieReducer,
   account: accountReducer,
   schedule: scheduleReducer,
-  notify: notifySlice,
 })
 
 const persistConfig = {

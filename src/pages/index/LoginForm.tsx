@@ -1,13 +1,12 @@
 import { Button, Cell, Form, Input, Radio, Toast } from '@taroify/core'
 import { View } from '@tarojs/components'
-import { request } from '@tarojs/taro'
+import Taro, { request } from '@tarojs/taro'
 import { useRequest, useSetState } from 'ahooks'
 import { JSEncrypt } from 'jsencrypt'
 import { useDispatch } from 'react-redux'
 import apis from '../../apis.json'
 import { setPassword, setUsername } from '../../store/accountSlice'
 import { setCookies } from '../../store/cookiesSlice'
-import { setNotifycolor, setNotifymsg, setNotifyshowTrue } from '../../store/notifySlice'
 
 export default function () {
   const login = () => request({
@@ -40,10 +39,21 @@ export default function () {
           dispatch(setUsername(info.username))
           dispatch(setPassword(info.password))
 
-          dispatch(setNotifycolor('success'))
-          dispatch(setNotifymsg('登录成功'))
-          dispatch(setNotifyshowTrue())
+          Taro.hideLoading()
+          Taro.showToast({
+            title: '点击右上角·•·加入桌面更方便',
+            icon: 'none',
+            duration: 2000
+          })
         }
+      },
+      onError: () => {
+        Taro.hideLoading()
+        Taro.showToast({
+          title: '登录失败',
+          icon: 'none',
+          duration: 2000
+        })
       }
     });
   const [info, setInfo] = useSetState({
@@ -53,6 +63,10 @@ export default function () {
   })
 
   const onSubmit = () => {
+    Taro.showLoading({
+      title: '登录中',
+      mask: true
+    })
     run();
   }
 
