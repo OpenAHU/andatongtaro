@@ -21,6 +21,10 @@ taro update project
 
 ## TODO
 
+### 整个项目
+
+- [ ] 扩展到QQ小程序
+
 ### 首页
 
 - [ ] 浴室查询
