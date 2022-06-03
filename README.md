@@ -21,8 +21,20 @@ taro update project
 
 ## TODO
 
+### 首页
+
+- [ ] 浴室查询
+- [ ] 校园卡余额
+- [ ] 作业
+
+### 应用
+
+- [ ] 成绩查询
+- [ ] 空闲教室
+
 ### 反馈
-类似Taro项目，
+
+类似Taro项目的bot，借助Github的Issue功能等。
 1. 类issue的反馈页面
 2. 通过bot自动周报
 
@@ -57,7 +69,8 @@ taro update project
 
 不建议嵌套使用redux和hooks。
 
-## 界面
+## 使用第三方库的例子
+
 ### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)。
 
 ## 其他
