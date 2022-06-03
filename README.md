@@ -50,43 +50,43 @@ taro update project
 
 ## 第三方库
 
-### [Taro 框架](https://docs.taro.zone/docs/GETTING-STARTED)
+### Taro with React
 
-### [Taroify UI库](https://taroify.gitee.io/taroify.com/quickstart/)
+[Taro 框架](https://docs.taro.zone/docs/GETTING-STARTED)
+
+### Taroify
+
+[Taroify UI库](https://taroify.gitee.io/taroify.com/quickstart/)
 
 ### Hooks
 
-### [ahoooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
+[ahoooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
 一些通用的请求hooks。
 
-### [taro hooks](https://taro-hooks-innocces.vercel.app/hooks/basic/use-app)
-
+[taro hooks](https://taro-hooks-innocces.vercel.app/hooks/basic/use-app)
 用一些为Taro定制的Hooks。
 
 ### Redux
 
-#### [redux toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
+[redux toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
 
-#### [redux 持久化](https://github.com/mefengl/redux-persist-taro-storage/tree/patch-1)
-
-即将本地缓存作为redux数据库。
+[redux 持久化](https://github.com/mefengl/redux-persist-taro-storage/tree/patch-1)
+将本地缓存作为redux数据库。
 
 哪些情况下使用redux做状态管理？
 1. 跨页面数据
 2. 持久化数据
 
 否则用hooks即可，优点是ahooks和taro-hooks提供了很多好用的轮子。
-
 不建议嵌套使用redux和hooks。
 
 ## 使用第三方库的例子
 
-### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)。
+### [登录 Popup实现](https://taroify.gitee.io/taroify.com/components/popup/)
 
 ## 其他
 
 ### dayjs
 
 [dayjs官网](https://dayjs.gitee.io/zh-CN/)
-
 提供很多日期相关的方法，比JS原生库简单许多。
