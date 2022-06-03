@@ -77,7 +77,7 @@ taro update project
 
 [redux toolkit](https://redux-toolkit.js.org/tutorials/quick-start)
 
-[redux 持久化](https://github.com/mefengl/redux-persist-taro-storage/tree/patch-1)
+[redux 持久化](https://github.com/mefengl/redux-persist-taro-storage)
 
 将本地缓存作为redux数据库。
 
