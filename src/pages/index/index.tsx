@@ -10,7 +10,6 @@ export default function Index() {
 
   return (
     <View>
-      <View className={styles.title}>hello</View>
       <Popup
         rounded
         open={needlogin}
@@ -19,6 +18,7 @@ export default function Index() {
       >
         <LoginForm />
       </Popup>
+      <View className={styles.title}>你好，安大</View>
     </View>
   );
 }

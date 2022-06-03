@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import apis from '../../apis.json'
 import { setPassword, setUsername } from '../../store/accountSlice'
 import { setCookies } from '../../store/cookiesSlice'
+import { setNotifycolor, setNotifymsg, setNotifyshowTrue } from '../../store/notifySlice'
 
 export default function () {
   const login = () => request({
@@ -20,7 +21,13 @@ export default function () {
     header: {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
-  }).then((res) => res?.cookies?.[0])
+  }).then((res) => {
+    let cookies = res?.cookies?.[0]
+    if (!cookies) {
+      return res.header?.['Set-Cookie']
+    }
+    return cookies
+  })
 
   const dispatch = useDispatch()
   const { run } = useRequest(login,
@@ -32,6 +39,10 @@ export default function () {
           dispatch(setCookies(res))
           dispatch(setUsername(info.username))
           dispatch(setPassword(info.password))
+
+          dispatch(setNotifycolor('success'))
+          dispatch(setNotifymsg('登录成功'))
+          dispatch(setNotifyshowTrue())
         }
       }
     });
@@ -44,6 +55,7 @@ export default function () {
   const onSubmit = () => {
     run();
   }
+
   return (
     <Form onSubmit={onSubmit}>
       <Toast id='toast' />

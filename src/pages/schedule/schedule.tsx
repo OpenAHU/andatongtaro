@@ -1,4 +1,4 @@
-import { Toast } from '@taroify/core';
+import { Notify, Popup, Toast } from '@taroify/core';
 import { Image, Swiper, SwiperItem, View } from '@tarojs/components';
 import Taro, { request, useDidHide, useDidShow } from '@tarojs/taro';
 import { useBoolean, useRequest } from 'ahooks';
@@ -7,13 +7,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'src/store';
 import apis from '../../apis.json';
 import rabbit from '../../assets/rabbitGrey.png';
+import { setNotifyshowFalse } from '../../store/notifySlice';
 import { changeTheme, setCurrentweeknumber, setSchedule, setSemester } from '../../store/scheduleSlice';
+import LoginForm from '../index/LoginForm';
 import classInfoRefine from './classInfoRefine';
 import './schedule.scss';
 import weekdayattop from './weekdayattop';
 import weeknumber from './weeknumber';
 
 export default function Index() {
+  const needlogin = useSelector((state: RootState) => state.cookies.needlogin)
+
   const dispatch = useDispatch();
   const theme = useSelector((state: RootState) => state.schedule.theme);
   const cookies = useSelector((state: RootState) => state.cookies)
@@ -46,7 +50,7 @@ export default function Index() {
     url: apis.schedule,
     data: {
       schoolYear: '2021-2022',
-      schoolTerm: '1'
+      schoolTerm: '2',
     },
     header: {
       Cookie: cookies.cookies,
@@ -63,9 +67,30 @@ export default function Index() {
       }
     });
 
+  const notifyshow = useSelector((state: RootState) => state.notify.notifyshow)
+  const notifymsg = useSelector((state: RootState) => state.notify.notifymsg)
+  const notifycolor = useSelector((state: RootState) => state.notify.notifycolor)
 
   return (
     <>
+      <Notify
+        open={notifyshow}
+        color={notifycolor}
+        duration={1000}
+        onClose={() => {
+          dispatch(setNotifyshowFalse())
+        }}
+        className='mt-6'
+      >
+        {notifymsg}
+      </Notify>
+      <Popup
+        rounded
+        open={needlogin}
+        className='h-auto pt-2 w-60'
+      >
+        <LoginForm />
+      </Popup>
       <Image
         className='rabbit'
         src={rabbit}
@@ -102,7 +127,6 @@ export default function Index() {
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((week, weekindex) => <SwiperItem
           key={weekindex}
         >
-          {loading && 'loading'}
           {!loading && scheduleData &&
             <View className='container'>
               {/* 每一天 */}
@@ -115,7 +139,7 @@ export default function Index() {
                 <View className='top'>
                   <View className='top--weekday'>{(dayindex ? "周" : "") + day}</View>
                   <View className='top--date'>
-                    {semester[weekindex][dayindex].month}{(dayindex ? "-" : "")}{semester[weekindex][dayindex].day}
+                    {semester?.[weekindex]?.[dayindex]?.month}{(dayindex ? "-" : "")}{semester?.[weekindex]?.[dayindex]?.day}
                   </View>
                 </View>
               </View>)}

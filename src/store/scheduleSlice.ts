@@ -33,7 +33,7 @@ const initialState: ScheduleSlice = {
   startDate: '2022-2-21',
   semester: [],
   currentweeknumber: 0,
-  theme: 0,
+  theme: 1,
 }
 
 export const scheduleSlice = createSlice({
